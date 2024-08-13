@@ -11,6 +11,9 @@
             "name": "Viacheslav Evseev"
         }
     ],
+    "bin": [
+        "bin/gendiff"
+    ],
     "require": {
         "docopt/docopt": "^1.0"
     }
