@@ -1,0 +1,4 @@
+# Makefile
+
+gendiff:
+	./bin/gendiff
