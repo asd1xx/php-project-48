@@ -10,7 +10,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$help = <<<HELP
+$doc = <<<DOC
 Generate diff
 
 Usage:
@@ -20,6 +20,6 @@ Usage:
 Options:
   -h --help                     Show this screen
   -v --version                  Show version
-HELP;
+DOC;
 
-print_r($help);
+$args = Docopt::handle($doc);
