@@ -11,5 +11,7 @@
             "name": "Viacheslav Evseev"
         }
     ],
-    "require": {}
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
 }
