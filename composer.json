@@ -1,0 +1,15 @@
+{
+    "name": "hexlet/code",
+    "description": "Difference calculator",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Viacheslav Evseev"
+        }
+    ],
+    "require": {}
+}
