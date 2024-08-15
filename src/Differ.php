@@ -27,7 +27,9 @@ function calculateDiff($firstFile, $secondFile)
         } elseif ($firstFileData[$key] === $secondFileData[$key]) {
             return  ['key' => $key, 'value1' => $firstFileData[$key], 'type' => 'unchanged'];
         } else {
-            return ['key' => $key, 'value1' => $firstFileData[$key], 'value2' => $secondFileData[$key], 'type' => 'updated'];
+            return [
+                'key' => $key, 'value1' => $firstFileData[$key], 'value2' => $secondFileData[$key], 'type' => 'updated'
+            ];
         }
     }, $keys);
 
