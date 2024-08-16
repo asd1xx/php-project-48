@@ -2,7 +2,7 @@
 
 namespace App\Differ;
 
-function genDiff(string $firstFilePath, string $secondFilePath)
+function genDiff(string $firstFilePath, string $secondFilePath): string
 {
     $firstFileContent = file_get_contents($firstFilePath);
     $secondFileContent = file_get_contents($secondFilePath);
@@ -10,7 +10,7 @@ function genDiff(string $firstFilePath, string $secondFilePath)
     return json_encode($result);
 }
 
-function calculateDiff($firstFile, $secondFile)
+function calculateDiff(string $firstFile, string $secondFile): array
 {
     $firstFileData = json_decode($firstFile, true);
     $secondFileData = json_decode($secondFile, true);
@@ -21,11 +21,11 @@ function calculateDiff($firstFile, $secondFile)
 
     $result = array_map(function ($key) use ($firstFileData, $secondFileData) {
         if (!array_key_exists($key, $firstFileData)) {
-            return ['key' => $key, 'value2' => $secondFileData[$key], 'type' => 'added'];
+            return ['key' => $key, 'value' => $secondFileData[$key], 'type' => 'added'];
         } elseif (!array_key_exists($key, $secondFileData)) {
-            return ['key' => $key, 'value1' => $firstFileData[$key], 'type' => 'removed'];
+            return ['key' => $key, 'value' => $firstFileData[$key], 'type' => 'removed'];
         } elseif ($firstFileData[$key] === $secondFileData[$key]) {
-            return  ['key' => $key, 'value1' => $firstFileData[$key], 'type' => 'unchanged'];
+            return  ['key' => $key, 'value' => $firstFileData[$key], 'type' => 'unchanged'];
         } else {
             return [
                 'key' => $key, 'value1' => $firstFileData[$key], 'value2' => $secondFileData[$key], 'type' => 'updated'
