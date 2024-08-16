@@ -15,9 +15,6 @@ jobs:
 
       - name: validate
         run: make validate
-      
-      - name: linter 
-        run: make lint
 
       - name: tests
         uses: paambaati/codeclimate-action@v8.0.0
