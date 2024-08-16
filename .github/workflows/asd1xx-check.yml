@@ -13,17 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup PHP 
+        uses: shivammathur/setup-php@v2 
+        with:
+          php-version: '8.3'
+
       - name: validate
         run: make validate
 
-      # - name: lint
-      #   run: make lint
+      - name: lint
+        run: make lint
 
       - name: tests
         uses: paambaati/codeclimate-action@v8.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: make coverage
+          coverageCommand: make tests
           coverageLocations: build/logs/clover.xml:clover
           debug: true
