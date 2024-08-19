@@ -10,9 +10,14 @@ class DifferTest extends TestCase
 {
     public function testDiffer(): void
     {
-        $fixture1 = __DIR__ . '/fixtures/file1.json';
-        $fixture2 = __DIR__ . '/fixtures/file2.json';
-        $expected = file_get_contents(__DIR__ . '/fixtures/expected-json');
-        $this->assertEquals($expected, genDiff($fixture1, $fixture2));
+        $jsonFixture1 = __DIR__ . '/fixtures/json-file1.json';
+        $jsonFixture2 = __DIR__ . '/fixtures/json-file2.json';
+        $jsonExpected = file_get_contents(__DIR__ . '/fixtures/json-expected');
+        $this->assertEquals($jsonExpected, genDiff($jsonFixture1, $jsonFixture2));
+
+        $yamlFixture1 = __DIR__ . '/fixtures/yaml-file1.yml';
+        $yamlFixture2 = __DIR__ . '/fixtures/yaml-file2.yml';
+        $yamlExpected = file_get_contents(__DIR__ . '/fixtures/yaml-expected');
+        $this->assertEquals($yamlExpected, genDiff($yamlFixture1, $yamlFixture2));
     }
 }
