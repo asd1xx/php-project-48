@@ -2,36 +2,71 @@
 
 namespace App\Differ;
 
+use function App\Parsers\parseFile;
+
 function genDiff(string $firstFilePath, string $secondFilePath): string
 {
-    $firstFileContent = file_get_contents($firstFilePath);
-    $secondFileContent = file_get_contents($secondFilePath);
+    $firstFileContent = parseFile($firstFilePath);
+    $secondFileContent = parseFile($secondFilePath);
     $result = calculateDiff($firstFileContent, $secondFileContent);
-    return json_encode($result);
+
+    return "{\n" . implode(makeDiff($result)) . "}";
 }
 
-function calculateDiff(string $firstFile, string $secondFile): array
+function calculateDiff(array $firstFile, array $secondFile): array
 {
-    $firstFileData = json_decode($firstFile, true);
-    $secondFileData = json_decode($secondFile, true);
-    $firstFileKeys = array_keys($firstFileData);
-    $secondFileKeys = array_keys($secondFileData);
+    $firstFileKeys = array_keys($firstFile);
+    $secondFileKeys = array_keys($secondFile);
     $keys = array_unique(array_merge($firstFileKeys, $secondFileKeys));
     sort($keys);
 
-    $result = array_map(function ($key) use ($firstFileData, $secondFileData) {
-        if (!array_key_exists($key, $firstFileData)) {
-            return ['key' => $key, 'value' => $secondFileData[$key], 'type' => 'added'];
-        } elseif (!array_key_exists($key, $secondFileData)) {
-            return ['key' => $key, 'value' => $firstFileData[$key], 'type' => 'removed'];
-        } elseif ($firstFileData[$key] === $secondFileData[$key]) {
-            return  ['key' => $key, 'value' => $firstFileData[$key], 'type' => 'unchanged'];
+    $result = array_map(function ($key) use ($firstFile, $secondFile) {
+        if (!array_key_exists($key, $firstFile)) {
+            return ['key' => $key, 'value2' => $secondFile[$key], 'type' => 'added'];
+        } elseif (!array_key_exists($key, $secondFile)) {
+            return ['key' => $key, 'value1' => $firstFile[$key], 'type' => 'removed'];
+        } elseif ($firstFile[$key] === $secondFile[$key]) {
+            return  ['key' => $key, 'value1' => $firstFile[$key], 'type' => 'unchanged'];
         } else {
             return [
-                'key' => $key, 'value1' => $firstFileData[$key], 'value2' => $secondFileData[$key], 'type' => 'updated'
+                'key' => $key, 'value1' => $firstFile[$key], 'value2' => $secondFile[$key], 'type' => 'updated'
             ];
         }
     }, $keys);
 
     return $result;
+}
+
+function makeDiff(array $data): array
+{
+    $result = array_map(function ($item) use ($data) {
+        $itemType = $item['type'];
+        $key = $item['key'];
+
+        switch ($itemType) {
+            case 'added':
+                // return "  - {$key}: {$item['value2']}\n";
+                return "  + {$key}: " . getStr($item['value2']) . "\n";
+            case 'removed':
+                // return "  - {$key}: {$item['value1']}\n";
+                return "  - {$key}: " . getStr($item['value1']) . "\n";
+            case 'unchanged':
+                // return "    {$key}: {$item['value1']}\n";
+                return "    {$key}: " . getStr($item['value1']) . "\n";
+            case 'updated':
+                // return "  - {$key}: {$item['value1']}\n  + {$key}: {$item['value2']}\n";
+                return "  - {$key}: " . getStr($item['value1']) . "\n  + {$key}: " . getStr($item['value2']) . "\n";
+        }
+    }, $data);
+
+    return $result;
+}
+
+function getStr(mixed $value): mixed
+{
+    if (is_bool($value)) {
+        return $value ? 'true' : 'false';
+    } else {
+        return $value;
+    }
 }
