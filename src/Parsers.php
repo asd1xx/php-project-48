@@ -2,17 +2,17 @@
 
 namespace App\Parsers;
 
-function parseFile(string $filePath)
+use Symfony\Component\Yaml\Yaml;
+
+function parseFile(string $filePath): array
 {
+    if (!file_exists($filePath)) {
+        throw new \Exception('File not found');
+    }
+
     $fileRealpath = realpath($filePath);
     $fileContent = file_get_contents($fileRealpath);
     $fileExtension = pathinfo($fileRealpath, PATHINFO_EXTENSION);
-
-    if ($fileRealpath === false) {
-        throw new \Exception('File not found');
-    } elseif ($fileContent === false) {
-        throw new \Exception('File is empty');
-    }
 
     switch ($fileExtension) {
         case 'json':
