@@ -45,17 +45,15 @@ function makeDiff(array $data): array
 
         switch ($itemType) {
             case 'added':
-                // return "  - {$key}: {$item['value2']}\n";
                 return "  + {$key}: " . getStr($item['value2']) . "\n";
             case 'removed':
-                // return "  - {$key}: {$item['value1']}\n";
                 return "  - {$key}: " . getStr($item['value1']) . "\n";
             case 'unchanged':
-                // return "    {$key}: {$item['value1']}\n";
                 return "    {$key}: " . getStr($item['value1']) . "\n";
             case 'updated':
-                // return "  - {$key}: {$item['value1']}\n  + {$key}: {$item['value2']}\n";
                 return "  - {$key}: " . getStr($item['value1']) . "\n  + {$key}: " . getStr($item['value2']) . "\n";
+            default:
+                throw new \Exception('Type is not defined');
         }
     }, $data);
 
@@ -66,7 +64,7 @@ function getStr(mixed $value): mixed
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
-    } else {
-        return $value;
     }
+
+    return $value;
 }
