@@ -55,19 +55,17 @@
 - `./bin/gendiff -h` — вывод справки.
 - `./bin/gendiff file1.json file2.json` — сравнение файлов формата json.
 - `./bin/gendiff file1.yml file2.yml` — сравнение файлов формата yaml.
-- `make brain-progression` — запуск игры "Арифметическая прогрессия".
-- `make brain-prime` — запуск игры "Простое ли число?".
 
 ## Демонстрация
 
 ### Вывод справки
 #### ./bin/gendiff -h
 [![asciicast](https://asciinema.org/a/W5xFnM1k43orI0VKgK5OpX9AJ.svg)](https://asciinema.org/a/W5xFnM1k43orI0VKgK5OpX9AJ)
-
+  
 ### Пример сравнения файлов формата json
 #### ./bin/gendiff tests/fixtures/json-file1.json tests/fixtures/json-file2.json
 [![asciicast](https://asciinema.org/a/GfF6983UgE6V9Bw92qNnD9KiY.svg)](https://asciinema.org/a/GfF6983UgE6V9Bw92qNnD9KiY)
-
+  
 ### Пример сравнения файлов формата yaml
 #### ./bin/gendiff tests/fixtures/yaml-file1.yml tests/fixtures/yaml-file2.yml
 [![asciicast](https://asciinema.org/a/oJTvWcADNMcJC8E9VMAr2gi73.svg)](https://asciinema.org/a/oJTvWcADNMcJC8E9VMAr2gi73)
