@@ -19,5 +19,15 @@ class DifferTest extends TestCase
         $yamlFixture2 = __DIR__ . '/fixtures/yaml-file2.yml';
         $yamlExpected = file_get_contents(__DIR__ . '/fixtures/yaml-expected');
         $this->assertEquals($yamlExpected, genDiff($yamlFixture1, $yamlFixture2));
+
+        $jsonTreeFixture1 = __DIR__ . '/fixtures/json-tree-file1.json';
+        $jsonTreeFixture2 = __DIR__ . '/fixtures/json-tree-file2.json';
+        $jsonTreeExpected = file_get_contents(__DIR__ . '/fixtures/json-tree-expected');
+        $this->assertEquals($jsonTreeExpected, genDiff($jsonTreeFixture1, $jsonTreeFixture2));
+
+        $yamlTreeFixture1 = __DIR__ . '/fixtures/yaml-tree-file1.yml';
+        $yamlTreeFixture2 = __DIR__ . '/fixtures/yaml-tree-file2.yml';
+        $yamlTreeExpected = file_get_contents(__DIR__ . '/fixtures/yaml-tree-expected');
+        $this->assertEquals($yamlTreeExpected, genDiff($yamlTreeFixture1, $yamlTreeFixture2));
     }
 }
