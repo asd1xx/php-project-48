@@ -3,9 +3,7 @@
 namespace App\Differ;
 
 use function App\Parsers\parseFile;
-use function App\Stylish\stylish;
-
-// const FOUR_SPACES = '    ';
+use function App\Formatters\getFormat;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
@@ -13,7 +11,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     $secondFileContent = parseFile($secondFilePath);
     $result = calculateDiff($firstFileContent, $secondFileContent);
 
-    return stylish($result);
+    return getFormat($result, $format);
 }
 
 function calculateDiff(array $firstFile, array $secondFile): array
