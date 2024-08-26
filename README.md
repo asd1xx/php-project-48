@@ -53,27 +53,31 @@
 Команды для запуска:
 
 - `./bin/gendiff -h` — вывод справки.
-- `./bin/gendiff file1.json file2.json` — сравнение файлов формата json.
-- `./bin/gendiff file1.yml file2.yml` — сравнение файлов формата yaml.
+- `./bin/gendiff --format stylish file1.json file2.json` — сравнение файлов json в stylish формате.
+- `./bin/gendiff --format stylish file1.yml file2.yml` — сравнение файлов yaml в stylish формате.
+- `./bin/gendiff --format plain file1.json file2.json` — сравнение файлов json в plain формате.
+- `./bin/gendiff --format plain file1.yml file2.yml` — сравнение файлов yaml в plain формате.
+- `./bin/gendiff file1.json file2.json` — если не указать формат, то stylish будет по умолчанию.
 
 ## Демонстрация
 
 #### Вывод справки
-##### ./bin/gendiff -h
 [![asciicast](https://asciinema.org/a/W5xFnM1k43orI0VKgK5OpX9AJ.svg)](https://asciinema.org/a/W5xFnM1k43orI0VKgK5OpX9AJ)
   
-#### Пример сравнения файлов формата json
-##### ./bin/gendiff tests/fixtures/json-file1.json tests/fixtures/json-file2.json
+#### Пример сравнения файлов json в stylish формате
 [![asciicast](https://asciinema.org/a/GfF6983UgE6V9Bw92qNnD9KiY.svg)](https://asciinema.org/a/GfF6983UgE6V9Bw92qNnD9KiY)
   
-#### Пример сравнения файлов формата yaml
-##### ./bin/gendiff tests/fixtures/yaml-file1.yml tests/fixtures/yaml-file2.yml
+#### Пример сравнения файлов yaml в stylish формате
 [![asciicast](https://asciinema.org/a/oJTvWcADNMcJC8E9VMAr2gi73.svg)](https://asciinema.org/a/oJTvWcADNMcJC8E9VMAr2gi73)
 
-#### Пример сравнения файлов формата json с вложенной структурой
-##### ./bin/gendiff tests/fixtures/json-tree-file1.json tests/fixtures/json-tree-file2.json
+#### Пример сравнения файлов json с вложенной структурой в stylish формате
 [![asciicast](https://asciinema.org/a/arnWjBX7yeQWK4Il5KgyH1bOm.svg)](https://asciinema.org/a/arnWjBX7yeQWK4Il5KgyH1bOm)
 
-#### Пример сравнения файлов формата yaml с вложенной структурой
-##### ./bin/gendiff tests/fixtures/yaml-tree-file1.yml tests/fixtures/yaml-tree-file2.yml
+#### Пример сравнения файлов yaml с вложенной структурой в stylish формате
 [![asciicast](https://asciinema.org/a/tnzft2QfYi8ZcTNUXFrMdnFC6.svg)](https://asciinema.org/a/tnzft2QfYi8ZcTNUXFrMdnFC6)
+
+#### Пример сравнения файлов json с вложенной структурой в plain формате
+[![asciicast](https://asciinema.org/a/r0g5mmchD9GPhYhvXCTOCNbxq.svg)](https://asciinema.org/a/r0g5mmchD9GPhYhvXCTOCNbxq)
+
+#### Пример сравнения файлов yaml с вложенной структурой в plain формате
+[![asciicast](https://asciinema.org/a/5HTdtE9HHjVHdDGeGaqtMrZfY.svg)](https://asciinema.org/a/5HTdtE9HHjVHdDGeGaqtMrZfY)
