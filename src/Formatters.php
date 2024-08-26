@@ -4,6 +4,7 @@ namespace App\Formatters;
 
 use function App\Formatters\Stylish\toStylish;
 use function App\Formatters\Plain\toPlain;
+use function App\Formatters\Json\toJson;
 
 function getFormat(array $data, string $format = 'stylish'): string
 {
@@ -12,6 +13,8 @@ function getFormat(array $data, string $format = 'stylish'): string
             return toStylish($data);
         case 'plain':
             return toPlain($data);
+        case 'json':
+            return toJson($data);
         default:
             throw new \Exception('Incorrect format');
     }
