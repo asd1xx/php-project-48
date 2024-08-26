@@ -5,7 +5,6 @@ namespace App\Formatters\Stylish;
 const FOUR_SPACES = '    ';
 const STEP = 1;
 
-
 function makeStylish(array $data, int $depth = 0): string
 {
     $indent = getIndent($depth);
