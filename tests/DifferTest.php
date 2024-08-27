@@ -10,39 +10,39 @@ class DifferTest extends TestCase
 {
     public function testDiffer(): void
     {
-        $jsonFixture1 = __DIR__ . '/fixtures/flat-json-file1.json';
-        $jsonFixture2 = __DIR__ . '/fixtures/flat-json-file2.json';
+        $jsonFile1 = __DIR__ . '/fixtures/flat-json-file1.json';
+        $jsonFile2 = __DIR__ . '/fixtures/flat-json-file2.json';
         $jsonExpected = file_get_contents(__DIR__ . '/fixtures/expected-stylish-flat');
-        $this->assertEquals($jsonExpected, genDiff($jsonFixture1, $jsonFixture2));
+        $this->assertEquals($jsonExpected, genDiff($jsonFile1, $jsonFile2));
 
-        $yamlFixture1 = __DIR__ . '/fixtures/flat-yaml-file1.yml';
-        $yamlFixture2 = __DIR__ . '/fixtures/flat-yaml-file2.yml';
+        $yamlFile1 = __DIR__ . '/fixtures/flat-yaml-file1.yml';
+        $yamlFile2 = __DIR__ . '/fixtures/flat-yaml-file2.yml';
         $yamlExpected = file_get_contents(__DIR__ . '/fixtures/expected-stylish-flat');
-        $this->assertEquals($yamlExpected, genDiff($yamlFixture1, $yamlFixture2));
+        $this->assertEquals($yamlExpected, genDiff($yamlFile1, $yamlFile2));
 
-        $jsonTreeFixture1 = __DIR__ . '/fixtures/tree-json-file1.json';
-        $jsonTreeFixture2 = __DIR__ . '/fixtures/tree-json-file2.json';
+        $jsonTreeFile1 = __DIR__ . '/fixtures/tree-json-file1.json';
+        $jsonTreeFile2 = __DIR__ . '/fixtures/tree-json-file2.json';
         $jsonTreeExpected = file_get_contents(__DIR__ . '/fixtures/expected-stylish-tree');
-        $this->assertEquals($jsonTreeExpected, genDiff($jsonTreeFixture1, $jsonTreeFixture2));
+        $this->assertEquals($jsonTreeExpected, genDiff($jsonTreeFile1, $jsonTreeFile2));
 
-        $yamlTreeFixture1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
-        $yamlTreeFixture2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
+        $yamlTreeFile1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
+        $yamlTreeFile2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
         $yamlTreeExpected = file_get_contents(__DIR__ . '/fixtures/expected-stylish-tree');
-        $this->assertEquals($yamlTreeExpected, genDiff($yamlTreeFixture1, $yamlTreeFixture2));
+        $this->assertEquals($yamlTreeExpected, genDiff($yamlTreeFile1, $yamlTreeFile2));
 
-        $jsonTreeFixture1 = __DIR__ . '/fixtures/tree-json-file1.json';
-        $jsonTreeFixture2 = __DIR__ . '/fixtures/tree-json-file2.json';
-        $jsonTreeExpected = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
-        $this->assertEquals($jsonTreeExpected, genDiff($jsonTreeFixture1, $jsonTreeFixture2, 'plain'));
+        $jsonTreePlainFile1 = __DIR__ . '/fixtures/tree-json-file1.json';
+        $jsonTreePlainFile2 = __DIR__ . '/fixtures/tree-json-file2.json';
+        $jsonTreePlainExpected = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
+        $this->assertEquals($jsonTreePlainExpected, genDiff($jsonTreePlainFile1, $jsonTreePlainFile2, 'plain'));
 
-        $yamlTreeFixture1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
-        $yamlTreeFixture2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
-        $yamlTreeExpected = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
-        $this->assertEquals($yamlTreeExpected, genDiff($yamlTreeFixture1, $yamlTreeFixture2, 'plain'));
+        $yamlTreePlainFile1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
+        $yamlTreePlainFile2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
+        $yamlTreePlainExpected = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
+        $this->assertEquals($yamlTreePlainExpected, genDiff($yamlTreePlainFile1, $yamlTreePlainFile2, 'plain'));
 
-        $jsonTreeFixture1 = __DIR__ . '/fixtures/tree-json-file1.json';
-        $jsonTreeFixture2 = __DIR__ . '/fixtures/tree-json-file2.json';
-        $jsonTreeExpected = file_get_contents(__DIR__ . '/fixtures/expected-json-tree');
-        $this->assertEquals($jsonTreeExpected, genDiff($jsonTreeFixture1, $jsonTreeFixture2, 'json'));
+        $jsonTreeJsonFile1 = __DIR__ . '/fixtures/tree-json-file1.json';
+        $jsonTreeJsonFile2 = __DIR__ . '/fixtures/tree-json-file2.json';
+        $jsonTreeJsonExpected = file_get_contents(__DIR__ . '/fixtures/expected-json-tree');
+        $this->assertEquals($jsonTreeJsonExpected, genDiff($jsonTreeJsonFile1, $jsonTreeJsonFile2, 'json'));
     }
 }
