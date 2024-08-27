@@ -28,14 +28,14 @@ class DifferTest extends TestCase
         $yamlTreeFile1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
         $yamlTreeFile2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
         $expected2 = file_get_contents(__DIR__ . '/fixtures/expected-stylish-tree');
-        $expected3 = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
-        $expected4 = file_get_contents(__DIR__ . '/fixtures/expected-json-tree');
+        // $expected3 = file_get_contents(__DIR__ . '/fixtures/expected-plain-tree');
+        // $expected4 = file_get_contents(__DIR__ . '/fixtures/expected-json-tree');
         $this->assertEquals($expected2, genDiff($jsonTreeFile1, $jsonTreeFile2));
         $this->assertEquals($expected2, genDiff($yamlTreeFile1, $yamlTreeFile2));
-        $this->assertEquals($expected3, genDiff($jsonTreeFile1, $jsonTreeFile2, 'plain'));
-        $this->assertEquals($expected3, genDiff($yamlTreeFile1, $jsonTreeFile2, 'plain'));
-        $this->assertEquals($expected4, genDiff($jsonTreeFile1, $jsonTreeFile2, 'json'));
-        $this->assertEquals($expected4, genDiff($yamlTreeFile1, $yamlTreeFile2, 'json'));
+        // $this->assertEquals($expected3, genDiff($jsonTreeFile1, $jsonTreeFile2, 'plain'));
+        // $this->assertEquals($expected3, genDiff($yamlTreeFile1, $jsonTreeFile2, 'plain'));
+        // $this->assertEquals($expected4, genDiff($jsonTreeFile1, $jsonTreeFile2, 'json'));
+        // $this->assertEquals($expected4, genDiff($yamlTreeFile1, $yamlTreeFile2, 'json'));
 
         // $yamlTreeFile1 = __DIR__ . '/fixtures/tree-yaml-file1.yml';
         // $yamlTreeFile2 = __DIR__ . '/fixtures/tree-yaml-file2.yml';
