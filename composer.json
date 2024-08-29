@@ -3,9 +3,6 @@
     "description": "Difference calculator",
     "license": "proprietary",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        },
         "files": [
             "src/Differ.php",
             "src/Parsers.php",
