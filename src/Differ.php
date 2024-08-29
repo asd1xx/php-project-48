@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Differ;
+namespace Differ\Differ;
 
 use function App\Parsers\parseFile;
 use function App\Formatters\getFormat;
