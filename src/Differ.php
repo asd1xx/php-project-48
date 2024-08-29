@@ -3,7 +3,7 @@
 namespace Differ\Differ;
 
 use function App\Parsers\parseFile;
-use function App\Formatters\getFormat;
+use function App\Formatters\format;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
@@ -11,7 +11,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     $secondFileContent = parseFile($secondFilePath);
     $result = calculateDiff($firstFileContent, $secondFileContent);
 
-    return getFormat($result, $format);
+    return format($result, $format);
 }
 
 function calculateDiff(array $firstFile, array $secondFile): array

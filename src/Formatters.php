@@ -6,7 +6,7 @@ use function App\Formatters\Stylish\toStylish;
 use function App\Formatters\Plain\toPlain;
 use function App\Formatters\Json\toJson;
 
-function getFormat(array $data, string $format = 'stylish'): string
+function format(array $data, string $format = 'stylish'): string
 {
     switch ($format) {
         case 'stylish':
