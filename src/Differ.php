@@ -23,38 +23,20 @@ function calculateDiff(array $firstFile, array $secondFile): array
 
     $result = array_map(function ($key) use ($firstFile, $secondFile) {
         if (!array_key_exists($key, $firstFile)) {
-            return [
-                'key' => $key,
-                'value' => $secondFile[$key],
-                'type' => 'added'
-            ];
-        } elseif (!array_key_exists($key, $secondFile)) {
-            return [
-                'key' => $key,
-                'value' => $firstFile[$key],
-                'type' => 'removed'
-            ];
-        } elseif ($firstFile[$key] === $secondFile[$key]) {
-            return  [
-                'key' => $key,
-                'value' => $firstFile[$key],
-                'type' => 'unchanged'
-            ];
-        } elseif (is_array($firstFile[$key]) && is_array($secondFile[$key])) {
-            $children = calculateDiff($firstFile[$key], $secondFile[$key]);
-            return [
-                'key' => $key,
-                'type' => 'nested',
-                'children' => $children
-            ];
-        } else {
-            return [
-                'key' => $key,
-                'value1' => $firstFile[$key],
-                'value2' => $secondFile[$key],
-                'type' => 'updated'
-            ];
+            return ['key' => $key, 'value' => $secondFile[$key], 'type' => 'added'];
         }
+        if (!array_key_exists($key, $secondFile)) {
+            return ['key' => $key, 'value' => $firstFile[$key], 'type' => 'removed'];
+        }
+        if ($firstFile[$key] === $secondFile[$key]) {
+            return  ['key' => $key, 'value' => $firstFile[$key], 'type' => 'unchanged'];
+        }
+        if (is_array($firstFile[$key]) && is_array($secondFile[$key])) {
+            $children = calculateDiff($firstFile[$key], $secondFile[$key]);
+            return ['key' => $key, 'type' => 'nested', 'children' => $children];
+        }
+
+        return ['key' => $key, 'value1' => $firstFile[$key], 'value2' => $secondFile[$key], 'type' => 'updated'];
     }, $keys);
 
     return $result;
