@@ -14,7 +14,6 @@ function makePlain(array $data, string $path = ''): string
                 $value = getString($item['value']);
                 return "Property '{$fullPath}' was added with value: {$value}\n";
             case 'removed':
-                $value = getString($item['value']);
                 return "Property '{$fullPath}' was removed\n";
             case 'unchanged':
                 return null;
