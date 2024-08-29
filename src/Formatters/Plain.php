@@ -33,7 +33,7 @@ function makePlain(array $data, string $path = ''): string
     return implode($result);
 }
 
-function getString(mixed $value, int $depth = 0): mixed
+function getString(mixed $value): string
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
