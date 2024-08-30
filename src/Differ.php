@@ -7,11 +7,25 @@ use function App\Formatters\format;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
-    $firstFileContent = parseFile($firstFilePath);
-    $secondFileContent = parseFile($secondFilePath);
+    $firstFileContent = parseFile(getFileContent($firstFilePath), getFileFormat($firstFilePath));
+    $secondFileContent = parseFile(getFileContent($secondFilePath), getFileFormat($secondFilePath));
     $result = calculateDiff($firstFileContent, $secondFileContent);
 
     return format($result, $format);
+}
+
+function getFileContent(string $filePath): string
+{
+    if (!file_exists($filePath)) {
+        throw new \Exception('File not found');
+    }
+
+    return file_get_contents($filePath);
+}
+
+function getFileFormat(string $filePath): string
+{
+    return pathinfo($filePath, PATHINFO_EXTENSION);
 }
 
 function calculateDiff(array $firstFile, array $secondFile): array
