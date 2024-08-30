@@ -4,22 +4,14 @@ namespace App\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parseFile(string $filePath): array
+function parseFile(string $data, string $format): array
 {
-    if (!file_exists($filePath)) {
-        throw new \Exception('File not found');
-    }
-
-    $fileRealpath = realpath($filePath);
-    $fileContent = file_get_contents($fileRealpath);
-    $fileExtension = pathinfo($fileRealpath, PATHINFO_EXTENSION);
-
-    switch ($fileExtension) {
+    switch ($format) {
         case 'json':
-            return json_decode($fileContent, true);
+            return json_decode($data, true);
         case 'yaml':
         case 'yml':
-            return Yaml::parse($fileContent);
+            return Yaml::parse($data);
         default:
             throw new \Exception('File extension not supported');
     }
