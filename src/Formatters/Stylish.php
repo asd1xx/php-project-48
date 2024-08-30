@@ -2,8 +2,11 @@
 
 namespace App\Formatters\Stylish;
 
-const FOUR_SPACES = '    ';
-const STEP = 1;
+const SPACE = ' ';
+const PLUS = '+';
+const MINUS = '-';
+const STEP = 4;
+const SYMBOL_REPEAT = 2;
 
 function makeStylish(array $data, int $depth = 0): string
 {
@@ -15,20 +18,22 @@ function makeStylish(array $data, int $depth = 0): string
         switch ($itemType) {
             case 'added':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}  + {$key}: {$value}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value}\n";
             case 'removed':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}  - {$key}: {$value}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
             case 'unchanged':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}    {$key}: {$value}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {$value}\n";
             case 'updated':
                 $value1 = getString($item['value1'], $depth + STEP);
                 $value2 = getString($item['value2'], $depth + STEP);
-                return "{$indent}  - {$key}: {$value1}\n{$indent}  + {$key}: {$value2}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value1}\n{$indent}" .
+                        getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value2}\n";
             case 'nested':
                 $value = getString(makeStylish($item['children'], $depth + STEP));
-                return "{$indent}    {$key}: {\n{$value}    {$indent}}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
+                        getIndent(SYMBOL_REPEAT) . SPACE . " {$indent}}\n";
             default:
                 throw new \Exception('Type is not defined');
         }
@@ -68,7 +73,7 @@ function toString(array $data, int $depth): string
 
 function getIndent(int $depth): string
 {
-    return str_repeat(FOUR_SPACES, $depth);
+    return str_repeat(SPACE, $depth);
 }
 
 function toStylish(array $diff): string
