@@ -4,6 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Parsers\parseFile;
 use function Differ\Formatters\format;
+use function Functional\sort;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
@@ -33,7 +34,7 @@ function calculateDiff(array $firstFile, array $secondFile): array
     $firstFileKeys = array_keys($firstFile);
     $secondFileKeys = array_keys($secondFile);
     $keys = array_unique(array_merge($firstFileKeys, $secondFileKeys));
-    sort($keys);
+    $sortKeys = sort($keys, fn ($left, $right) => $left <=> $right);
 
     $result = array_map(function ($key) use ($firstFile, $secondFile) {
         if (!array_key_exists($key, $firstFile)) {
@@ -51,7 +52,7 @@ function calculateDiff(array $firstFile, array $secondFile): array
         }
 
         return ['key' => $key, 'value1' => $firstFile[$key], 'value2' => $secondFile[$key], 'type' => 'updated'];
-    }, $keys);
+    }, $sortKeys);
 
     return $result;
 }
