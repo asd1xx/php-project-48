@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Formatters;
+namespace Differ\Formatters;
 
-use function App\Formatters\Stylish\toStylish;
-use function App\Formatters\Plain\toPlain;
-use function App\Formatters\Json\toJson;
+use function Differ\Formatters\Stylish\toStylish;
+use function Differ\Formatters\Plain\toPlain;
+use function Differ\Formatters\Json\toJson;
 
 function format(array $data, string $format = 'stylish'): string
 {

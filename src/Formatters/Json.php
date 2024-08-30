@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Formatters\Json;
+namespace Differ\Formatters\Json;
 
 function toJson(array $data): string
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Formatters\Plain;
+namespace Differ\Formatters\Plain;
 
 function makePlain(array $data, string $path = ''): string
 {

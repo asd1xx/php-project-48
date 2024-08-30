@@ -2,8 +2,8 @@
 
 namespace Differ\Differ;
 
-use function App\Parsers\parseFile;
-use function App\Formatters\format;
+use function Differ\Parsers\parseFile;
+use function Differ\Formatters\format;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
