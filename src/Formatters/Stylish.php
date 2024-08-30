@@ -46,9 +46,11 @@ function getString(mixed $value, int $depth = 0): mixed
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
-    } elseif (is_null($value)) {
+    }
+    if (is_null($value)) {
         return 'null';
-    } elseif (is_array($value)) {
+    }
+    if (is_array($value)) {
         $result = toString($value, $depth);
         $indent = getIndent($depth);
         return "{{$result}\n{$indent}}";

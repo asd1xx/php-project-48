@@ -36,10 +36,15 @@ function getString(mixed $value): string
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
-    } elseif (is_null($value)) {
+    }
+    if (is_null($value)) {
         return 'null';
-    } elseif (is_array($value)) {
+    }
+    if (is_array($value)) {
         return '[complex value]';
+    }
+    if (is_int($value)) {
+        return $value;
     }
 
     return "'{$value}'";
