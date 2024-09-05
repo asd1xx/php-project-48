@@ -25,7 +25,7 @@ function makePlain(array $data, string $path = ''): string
                 $nestedPath = "{$fullPath}.";
                 return makePlain($item['children'], $nestedPath);
             default:
-                throw new \Exception('Type is not defined');
+                throw new \Exception("Type is not defined: $itemType");
         }
     }, $data);
 

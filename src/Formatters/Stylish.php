@@ -35,7 +35,7 @@ function makeStylish(array $data, int $depth = 0): string
                 return "{$indent}" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
                         getIndent(SYMBOL_REPEAT) . SPACE . " {$indent}}\n";
             default:
-                throw new \Exception('Type is not defined');
+                throw new \Exception("Type is not defined: $itemType");
         }
     }, $data);
 

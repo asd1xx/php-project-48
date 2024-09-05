@@ -18,7 +18,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
 function getFileContent(string $filePath): string
 {
     if (!file_exists($filePath)) {
-        throw new \Exception('File not found');
+        throw new \Exception("File not found: $filePath");
     }
 
     return file_get_contents($filePath);

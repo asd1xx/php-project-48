@@ -16,6 +16,6 @@ function format(array $data, string $format = 'stylish'): string
         case 'json':
             return toJson($data);
         default:
-            throw new \Exception('Incorrect format');
+            throw new \Exception("Incorrect format: $format");
     }
 }
