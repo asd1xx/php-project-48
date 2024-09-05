@@ -5,6 +5,7 @@ namespace Differ\Formatters\Stylish;
 const INDENT_SYMBOL = ' ';
 const PLUS = '+';
 const MINUS = '-';
+const SPACE = ' ';
 const STEP = 4;
 const SYMBOL_REPEAT = 2;
 
@@ -27,7 +28,7 @@ function makeStylish(array $data, int $depth = 0): string
 
         if ($itemType === 'unchanged') {
             $value = getString($item['value'], $depth + STEP);
-            return "$indent" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {$value}\n";
+            return "$indent" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {$value}\n";
         }
 
         if ($itemType === 'updated') {
@@ -39,8 +40,8 @@ function makeStylish(array $data, int $depth = 0): string
 
         if ($itemType === 'nested') {
             $value = getString(makeStylish($item['children'], $depth + STEP));
-            return "$indent" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {\n{$value}" .
-                    getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$indent}}\n";
+            return "$indent" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
+                    getIndent(SYMBOL_REPEAT) . getIndent(SYMBOL_REPEAT) . "{$indent}}\n";
         }
     }, $data);
 
