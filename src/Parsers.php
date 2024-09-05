@@ -4,7 +4,7 @@ namespace Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parseFile(string $data, string $format): array
+function parse(string $data, string $format): array
 {
     switch ($format) {
         case 'json':

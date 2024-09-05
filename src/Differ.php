@@ -2,14 +2,14 @@
 
 namespace Differ\Differ;
 
-use function Differ\Parsers\parseFile;
+use function Differ\Parsers\parse;
 use function Differ\Formatters\format;
 use function Functional\sort;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
-    $firstFileContent = parseFile(getFileContent($firstFilePath), getFileFormat($firstFilePath));
-    $secondFileContent = parseFile(getFileContent($secondFilePath), getFileFormat($secondFilePath));
+    $firstFileContent = parse(getFileContent($firstFilePath), getFileFormat($firstFilePath));
+    $secondFileContent = parse(getFileContent($secondFilePath), getFileFormat($secondFilePath));
     $result = calculateDiff($firstFileContent, $secondFileContent);
 
     return format($result, $format);
