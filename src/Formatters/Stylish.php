@@ -18,21 +18,21 @@ function makeStylish(array $data, int $depth = 0): string
         switch ($itemType) {
             case 'added':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value}\n";
+                return "$indent" . getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value}\n";
             case 'removed':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
+                return "$indent" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
             case 'unchanged':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {$value}\n";
+                return "$indent" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {$value}\n";
             case 'updated':
                 $value1 = getString($item['value1'], $depth + STEP);
                 $value2 = getString($item['value2'], $depth + STEP);
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value1}\n{$indent}" .
+                return "$indent" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value1}\n{$indent}" .
                         getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value2}\n";
             case 'nested':
                 $value = getString(makeStylish($item['children'], $depth + STEP));
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {\n{$value}" .
+                return "$indent" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {\n{$value}" .
                         getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$indent}}\n";
             default:
                 throw new \Exception("Type is not defined: $itemType");
