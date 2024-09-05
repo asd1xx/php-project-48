@@ -9,23 +9,28 @@ function makePlain(array $data, string $path = ''): string
         $key = $item['key'];
         $fullPath = "{$path}{$key}";
 
-        switch ($itemType) {
-            case 'added':
-                $value = getString($item['value']);
-                return "Property '$fullPath' was added with value: {$value}\n";
-            case 'removed':
-                return "Property '$fullPath' was removed\n";
-            case 'unchanged':
-                return null;
-            case 'updated':
-                $value1 = getString($item['value1']);
-                $value2 = getString($item['value2']);
-                return "Property '$fullPath' was updated. From {$value1} to {$value2}\n";
-            case 'nested':
-                $nestedPath = "{$fullPath}.";
-                return makePlain($item['children'], $nestedPath);
-            default:
-                throw new \Exception("Type is not defined: $itemType");
+        if ($itemType === 'added') {
+            $value = getString($item['value']);
+            return "Property '$fullPath' was added with value: {$value}\n";
+        }
+
+        if ($itemType === 'removed') {
+            return "Property '$fullPath' was removed\n";
+        }
+
+        if ($itemType === 'unchanged') {
+            return null;
+        }
+
+        if ($itemType === 'updated') {
+            $value1 = getString($item['value1']);
+            $value2 = getString($item['value2']);
+            return "Property '$fullPath' was updated. From {$value1} to {$value2}\n";
+        }
+
+        if ($itemType === 'nested') {
+            $nestedPath = "{$fullPath}.";
+            return makePlain($item['children'], $nestedPath);
         }
     }, $data);
 
