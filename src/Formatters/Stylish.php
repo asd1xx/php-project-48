@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Stylish;
 
-const SPACE = ' ';
+const INDENT_SYMBOL = ' ';
 const PLUS = '+';
 const MINUS = '-';
 const STEP = 4;
@@ -24,7 +24,7 @@ function makeStylish(array $data, int $depth = 0): string
                 return "{$indent}" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
             case 'unchanged':
                 $value = getString($item['value'], $depth + STEP);
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {$value}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {$value}\n";
             case 'updated':
                 $value1 = getString($item['value1'], $depth + STEP);
                 $value2 = getString($item['value2'], $depth + STEP);
@@ -32,8 +32,8 @@ function makeStylish(array $data, int $depth = 0): string
                         getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value2}\n";
             case 'nested':
                 $value = getString(makeStylish($item['children'], $depth + STEP));
-                return "{$indent}" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
-                        getIndent(SYMBOL_REPEAT) . SPACE . " {$indent}}\n";
+                return "{$indent}" . getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$key}: {\n{$value}" .
+                        getIndent(SYMBOL_REPEAT) . INDENT_SYMBOL . " {$indent}}\n";
             default:
                 throw new \Exception("Type is not defined: $itemType");
         }
@@ -75,7 +75,7 @@ function toString(array $data, int $depth): string
 
 function getIndent(int $depth): string
 {
-    return str_repeat(SPACE, $depth);
+    return str_repeat(INDENT_SYMBOL, $depth);
 }
 
 function toStylish(array $diff): string
