@@ -18,29 +18,29 @@ function makeStylish(array $data, int $depth = 0): string
 
         if ($itemType === 'added') {
             $value = getString($item['value'], $depth + STEP);
-            return "$indent" . getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value}\n";
+            return $indent . getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value}\n";
         }
 
         if ($itemType === 'removed') {
             $value = getString($item['value'], $depth + STEP);
-            return "$indent" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
+            return $indent . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value}\n";
         }
 
         if ($itemType === 'unchanged') {
             $value = getString($item['value'], $depth + STEP);
-            return "$indent" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {$value}\n";
+            return $indent . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {$value}\n";
         }
 
         if ($itemType === 'updated') {
             $value1 = getString($item['value1'], $depth + STEP);
             $value2 = getString($item['value2'], $depth + STEP);
-            return "$indent" . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value1}\n{$indent}" .
+            return $indent . getIndent(SYMBOL_REPEAT) . MINUS . " {$key}: {$value1}\n{$indent}" .
                     getIndent(SYMBOL_REPEAT) . PLUS . " {$key}: {$value2}\n";
         }
 
         if ($itemType === 'nested') {
             $value = getString(makeStylish($item['children'], $depth + STEP));
-            return "$indent" . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
+            return $indent . getIndent(SYMBOL_REPEAT) . SPACE . " {$key}: {\n{$value}" .
                     getIndent(SYMBOL_REPEAT) . getIndent(SYMBOL_REPEAT) . "{$indent}}\n";
         }
     }, $data);
